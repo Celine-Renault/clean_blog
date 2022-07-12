@@ -21,14 +21,16 @@
 
 {% block content %}
 
-	{% for category in categorys %}
+	{% for post in posts %}
+
+		<h3>{{post.category.name}}</h3>
 
 		<div class="categorie">
-			<p>{{category.id}}</p>
-			<p>{{category.name}}</p>
+			<p>{{post.Titre}}</p>
+			<p>{{post.Description}}</p>
+			<p>{{post.Contenu}}</p>
 		</div>
 	{% endfor %}
-
 
 
 {% endblock %}

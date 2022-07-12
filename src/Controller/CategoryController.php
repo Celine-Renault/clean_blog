@@ -19,19 +19,20 @@ class CategoryController extends AbstractController
         $this->repo = $repo;
     }
 
-    #[Route('/category', name: 'category.index')]
-    public function index(): Response
-    {
+    // #[Route('/category', name: 'category.index')]
+    // public function index(): Response
+    // {
 
-        $categorys = $this->repo->findAll();
-        return $this->render('category/index.html.twig', ['categorys'=>$categorys]);
-    }
-
-    // #[Route('/post/{id}', name: 'post.show', methods:['GET'])]
-    // public function show($id): Response{
-
-    //     $post = $this->repo->find($id);
-    //     return $this->render('/catgory', ['post'=>$post]);
+    //     $categorys = $this->repo->findAll();
+    //     return $this->render('category/index.html.twig', ['categorys'=>$categorys]);
     // }
-    
+
+    #[Route('/category/{id}', name: 'category.show', methods:['GET'])]
+    public function show($id): Response{
+
+        $category = $this->repo->find($id);
+        $posts = $category->getPost();
+
+        return $this->render('/catgory/show.html.twig', ['posts'=>$posts]);
+    } 
 }
