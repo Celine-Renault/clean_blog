@@ -11279,3 +11279,13 @@ select{
   margin-left: 20px;
   margin-top: 20px;
 }
+
+.categorie{
+  display:flex;
+  width:500px;
+  margin: 0 auto;
+}
+
+.categorie>p:last-child{
+  margin-left: 10px;
+}

@@ -20,59 +20,61 @@ class ContactController extends AbstractController
         $this->repo = $repo;
     }
 
-    
+
     #[Route('/contact', name: 'contact.index')]
     public function index(): Response
     {
-
+       
         return $this->render('contact/create.html.twig');
     }
 
-    #[Route('/contact/create', name: 'contact.create', methods:['GET','POST'])]
+    #[Route('/contact/create', name: 'contact.create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
-        $submit = $request->get('submit'); 
-        $errors=[];
+        $submit = $request->get('submit');
+        $errors = [];
+
       
-        if (!isset($submit)) {
-            return $this->render('contact/create.html.twig');
-        }
 
         $name = trim($request->get('name'));
-        if(empty($name)){
-            $errors['name']='Le nom est requis !';
+        if (empty($name)) {
+            $errors['name'] = 'Le nom est requis !';
         }
         $email = trim($request->get('email'));
-        if(empty($email)){
-            $errors['email']='L\'email est requis !';
+        if (empty($email)) {
+            $errors['email'] = 'L\'email est requis !';
         }
         $telephone = trim($request->get('telephone'));
-        if(empty($telephone)){
-            $errors['telephone']='Le numéro de téléphone est requis !';
+        if (empty($telephone)) {
+            $errors['telephone'] = 'Le numéro de téléphone est requis !';
         }
-     
+
         $message = trim($request->get('message'));
-        if(empty($message)){
-            $errors['message']='Le message est requis !';
+        if (empty($message)) {
+            $errors['message'] = 'Le message est requis !';
         }
 
-        $data=['name'=>$name, 'email'=>$email, 'telephone'=>$telephone, 'message'=>$message];
+        $data = ['name' => $name, 'email' => $email, 'telephone' => $telephone, 'message' => $message];
 
-        if(empty($errors)){
-                
-        $contact = new Contact();
+        if (!isset($submit)) {
+            return $this->render('contact/create.html.twig', ['data'=>$data]);
+        }
 
-        $contact->setName($name); 
-        $contact->setEmail($email); 
-        $contact->setTelephone($telephone); 
-        $contact->setMessage($message); 
- 
+        if (empty($errors)) {
+
+            $contact = new Contact();
+
+            $contact->setName($name);
+            $contact->setEmail($email);
+            $contact->setTelephone($telephone);
+            $contact->setMessage($message);
+
             $this->repo->add($contact, true);
-     
-            return $this->redirect('/'); 
-        }else{
 
-            return $this->renderForm('/contact/create.html.twig', ['errors'=>$errors, 'data'=>$data]); 
+            return $this->redirect('/');
+        } else {
+
+            return $this->renderForm('/contact/create.html.twig', ['errors' => $errors, 'data' => $data]);
         }
     }
 }

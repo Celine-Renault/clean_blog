@@ -26,6 +26,7 @@ class PostController extends AbstractController
     {
 
         $posts = $this->repo->findAll();
+       
         return $this->render('post/index.html.twig', ['posts' => $posts]);
     }
     #[Route('/post/create', name: 'post.create', methods: ['GET', 'POST'])]
@@ -52,7 +53,10 @@ class PostController extends AbstractController
     {
 
         $post = $this->repo->find($id); // je recupere 1 element
+        
 
         return $this->render('/post/show.html.twig', ['post' => $post]);
     }
+
+   
 }
