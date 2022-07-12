@@ -56,7 +56,7 @@ class ContactController extends AbstractController
             $errors['message']='Le message est requis !';
         }
 
-        $data=['name'=>$name, 'email'=>$email, 'telephone'=>$telephone, 'message'=>$message];
+        $data=['name'=>$name, 'email'=>$email, 'telephone'=>$telephone, 'message'=>$message]
 
         if(empty($errors)){
                 
