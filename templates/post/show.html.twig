@@ -1,0 +1,61 @@
+{% extends "layout/default.html.twig" %}
+
+{% block title %}Détails post
+{% endblock %}
+
+
+{% block header %}
+
+	<header class="masthead" style="background-image: url('{{asset('assets/img/post-bg.jpg')}}')">
+		<div class="container position-relative px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7">
+					<div class="site-heading">
+						<div class="post-heading">
+								<h1 class="post-title">{{post.Titre}}</h1>
+								<h2 class="post-subtitle">{{post.Description}}</h2>
+							<p class="meta">
+								Posted by
+								<a href="#!">Start Bootstrap</a>
+								on
+								{{post.CreatedAt|date("m/d/Y")}}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+{% endblock %}
+
+{% block content %}
+
+
+	<article class="mb-4">
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7">
+					<p>{{post.Contenu}}</p>
+
+					<h2 class="section-heading">Lorem ipsum dolor int</h2>
+
+					<blockquote class="blockquote">{{post.Contenu}}</blockquote>
+
+					<h2 class="section-heading">Lorem ipsum dolor int</h2>
+					<p></p>
+					<a href=""><img class="img-fluid" src="{{asset('assets/img/post-sample-image.jpg')}}" alt="..."/></a>
+					<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+					<p>{{post.Contenu}}</p>
+					<p>{{post.Contenu}}</p>
+					<p>
+						Placeholder text by
+						<a href="http://spaceipsum.com/">Space Ipsum</a>
+						&middot; Images by
+						<a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</article>
+{% endblock %}
