@@ -11,7 +11,7 @@
 				<div class="col-md-10 col-lg-8 col-xl-7">
 					<div class="site-heading">
 						<h1>Categories</h1>
-						<span class="subheading">Category...</span>
+						<span class="subheading title-category">{{category.name}}</span>
 					</div>
 				</div>
 			</div>
@@ -23,14 +23,26 @@
 
 	{% for post in posts %}
 
-		<h3>{{post.category.name}}</h3>
+		<div class="post-preview category">
 
-		<div class="categorie">
-			<p>{{post.Titre}}</p>
-			<p>{{post.Description}}</p>
-			<p>{{post.Contenu}}</p>
+			<a href="/post/{{post.id}}">
+				<h2 class="post-title">{{post.Titre}}</h2>
+				<h3 class="post-subtitle">{{post.Description}}</h3>
+			</a>
+
+			<p class="post-meta">
+				Posted by
+				<a href="#!">Start Bootstrap</a>
+				on
+				{{post.CreatedAt|date("m/d/Y")}}
+			</p>
+				 <a class="post-category type-category" href="/category/{{post.category.id}}">{{post.category.name}}</a>
+
+			 <hr class="my-4" />
 		</div>
-	{% endfor %}
 
+		
+
+	{% endfor %}
 
 {% endblock %}

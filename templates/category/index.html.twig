@@ -1,0 +1,58 @@
+{% extends "layout/default.html.twig" %}
+
+{% block title %}Catégories
+{% endblock %}
+
+{% block header %}
+	<!-- Page Header-->
+	<header class="masthead" style="background-image: url('{{asset('assets/img/contact-bg.jpg')}}')">
+		<div class="container position-relative px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7">
+					<div class="site-heading">
+						<h1>Liste des categories</h1>
+						<span class="subheading"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+{% endblock %}
+
+{% block content %}
+
+	{% for category in categorys %}
+
+		<div class="post-preview category">
+
+			<a href="/category/{{category.id}}">
+				<p class="post-subtitle type-category">{{category.name}}</p>
+			</a>
+
+			<div class="sup-mod-category">
+				<form action="/category/edit/{{category.id}}" method="POST">
+					<button class="btn btn-primary btn-cat" type="submit">MODIFY</button>
+				</form>
+
+				<form action="/category/delete/{{category.id}}" method="POST">
+					<button class="btn btn-danger btn-cat" onclick="return confirm('Voulez-vous supprimer cette categorie ?')" type="submit">DELETE</button>
+				</form>
+			</div>
+
+		</div>
+	{% endfor %}
+
+	{# <a class="btn btn-primary" href="/category/create">ADD CATEGORY</a> #}
+
+			<form class="ajouter-cat" action="/category/create" method="POST">
+		    <label for="email">Ajouter une nouvelle catégorie</label>
+			<input class="form-control" id="email" type="text" name="name"  data-sb-validations="required,email"/>
+			<button type="submit" class="btn btn-primary btn-cat">ADD</button>
+			</form>
+	
+
+	{# {{form(form)}} #}
+
+
+
+{% endblock %}

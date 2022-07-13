@@ -37,40 +37,46 @@
 						<!-- to get an API token!-->
 
 
-							<form action="/contact/create" methods="POST" id="contactForm" data-sb-form-api-token="API_TOKEN"> <div class="form-floating">
+							<form action="/contact/create" methods="POST" id="contactForm" data-sb-form-api-token="API_TOKEN"> 
+
+							<div class="form-floating">
 								<input class="form-control" id="name" type="text" name="name" value="{{data.name}}" placeholder="Enter your name..." data-sb-validations="required"/>
 								<label for="name">Name</label>
 								{% if errors.name is defined %}
-									<div class="errors text-danger">{{errors.name}}</div>
+									<div class="text-danger">{{errors.name}}</div>
 								{% endif %}
 
 								{# <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div> #}
 							</div>
+
 							<div class="form-floating">
 								<input class="form-control" id="email" type="email" name="email" value="{{data.email}}" placeholder="Enter your email..." data-sb-validations="required,email"/>
 								<label for="email">Email address</label>
 								{% if errors.email is defined %}
-									<div class="errors text-danger">{{errors.email}}</div>
+									<div class="text-danger">{{errors.email}}</div>
 								{% endif %}
 								{# <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 								<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div> #}
 							</div>
+
 							<div class="form-floating">
 								<input class="form-control" id="phone" type="tel" name="telephone" value="{{data.telephone}}" placeholder="Enter your phone number..." data-sb-validations="required"/>
 								<label for="phone">Phone Number</label>
 								{% if errors.telephone is defined %}
-									<div class="errors text-danger">{{errors.telephone}}</div>
+									<div class="text-danger">{{errors.telephone}}</div>
 								{% endif %}
-								<div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+								{# <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div> #}
 							</div>
+
 							<div class="form-floating">
 								<textarea class="form-control" id="message" name="message" value="{{data.message}}" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
 								<label for="message">Message</label>
 								{% if errors.message is defined %}
-									<div class="errors text-danger">{{errors.message}}</div>
+									<div class="text-danger">{{errors.message}}</div>
 								{% endif %}
-								<div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+								{# <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div> #}
 							</div>
+
 							<br/>
 							<!-- Submit success message-->
 							<!---->
@@ -83,13 +89,13 @@
 									<a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
 								</div>
 							</div>
-
+							<!-- Submit Button-->
 							<button class="btn btn-primary text-uppercase" id="submitButton" type="submit" name="submit">Send</button>
 
 						</form>
 
 
-						<!-- Submit Button-->
+				
 
 
 					</form>

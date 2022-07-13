@@ -54,7 +54,6 @@ class PostController extends AbstractController
 
         $post = $this->repo->find($id); // je recupere 1 element
         
-
         return $this->render('/post/show.html.twig', ['post' => $post]);
     }
 

@@ -33,7 +33,7 @@ class ContactController extends AbstractController
     {
         $submit = $request->get('submit');
         $errors = [];
-
+        
       
 
         $name = trim($request->get('name'));
@@ -54,7 +54,7 @@ class ContactController extends AbstractController
             $errors['message'] = 'Le message est requis !';
         }
 
-        $data = ['name' => $name, 'email' => $email, 'telephone' => $telephone, 'message' => $message];
+        $data = ['name' => $name, 'email' => $email, 'telephone' => $telephone, 'message' => $message]; // $data pour garder en mémoire ce qui a ete rempli dans l'input
 
         if (!isset($submit)) {
             return $this->render('contact/create.html.twig', ['data'=>$data]);
