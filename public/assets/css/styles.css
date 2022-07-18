@@ -12307,3 +12307,9 @@ textarea {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+.formulaire-connexion{
+  width:50%;
+  margin:0 auto;
+  margin-bottom: 2rem;
+}

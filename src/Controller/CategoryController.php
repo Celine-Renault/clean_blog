@@ -40,7 +40,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/category/delete/{id}', name: 'category.delete', methods: ['POST'])]
-    public function delete($id)
+    public function delete($id) // function delete pour supprimer une categorie
     {
         $category = $this->repo->find($id);
         $posts = $category->getPost();
@@ -53,7 +53,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/category/create', name: 'category.create', methods: ['GET', 'POST'])]
-    public function create(Request $request): Response
+    public function create(Request $request): Response // function create pour ajouter une category
     {
 
         $category = new Category();
@@ -91,13 +91,13 @@ class CategoryController extends AbstractController
         // return $this->renderForm('/category/create.html.twig');
     }
 
-    // #[Route('/category/{id}', name: 'category.show', methods: ['GET'])]
-    // public function show($id): Response
-    // {
+    #[Route('/category/{id}', name: 'category.show', methods: ['GET'])]
+    public function show($id): Response
+    {
 
-    //     $category = $this->repo->find($id);
-    //     $posts = $category->getPost();
+        $category = $this->repo->find($id);
+        $posts = $category->getPost();
 
-    //     return $this->render('/category/show.html.twig', ['posts' => $posts, 'category' => $category]);
-    // }
+        return $this->render('/category/show.html.twig', ['posts' => $posts, 'category' => $category]);
+    }
 }
