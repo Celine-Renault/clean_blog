@@ -33,7 +33,6 @@ class CategoryController extends AbstractController
     #[Route('/category/edit/{id}', methods: ['POST'])]
     public function update($id)
     {
-
         $category = $this->repo->find($id);
         $this->repo->update($category);
 
@@ -45,8 +44,9 @@ class CategoryController extends AbstractController
     {
         $category = $this->repo->find($id);
         $posts = $category->getPost();
-
-        if(empty($posts)){
+        // methode isEmpty pour verifier si la catégory ne contient pas de post
+        // si la category ne contient pas de post on l'a supprime 
+        if($posts->isEmpty()){
             $this->repo->remove($category, true);
         }
         return $this->redirect('/category');
@@ -91,13 +91,13 @@ class CategoryController extends AbstractController
         // return $this->renderForm('/category/create.html.twig');
     }
 
-    #[Route('/category/{id}', name: 'category.show', methods: ['GET'])]
-    public function show($id): Response
-    {
+    // #[Route('/category/{id}', name: 'category.show', methods: ['GET'])]
+    // public function show($id): Response
+    // {
 
-        $category = $this->repo->find($id);
-        $posts = $category->getPost();
+    //     $category = $this->repo->find($id);
+    //     $posts = $category->getPost();
 
-        return $this->render('/category/show.html.twig', ['posts' => $posts, 'category' => $category]);
-    }
+    //     return $this->render('/category/show.html.twig', ['posts' => $posts, 'category' => $category]);
+    // }
 }
