@@ -32,7 +32,7 @@
                         {# <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Posts</a></li> #}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact/create">Contact</a></li>
                         
-                        {% if app.user %}
+                     {% if is_granted ('ROLE_USER') %}
                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/post/create">Add Post</a></li>
                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/category">Categories</a></li>
                           <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Log Out</a></li>

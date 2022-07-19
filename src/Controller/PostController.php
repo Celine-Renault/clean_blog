@@ -33,7 +33,7 @@ class PostController extends AbstractController
     #[Route('/post/create', name: 'post.create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $post = new Post(); // creation de l'objet Post qui est vide pour le moment
 
         $form = $this->createForm(PostType::class, $post); //creation du formulaire qu'on place dans $form, il va s'afficher sur la page /post/create
@@ -52,7 +52,7 @@ class PostController extends AbstractController
     #[Route('/post/{id}', name: 'post.show', methods: ['GET'])]
     public function show($id): Response
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $post = $this->repo->find($id); // je recupere 1 element
         
         return $this->render('/post/show.html.twig', ['post' => $post]);
