@@ -12319,10 +12319,7 @@ textarea {
   margin-top: -9rem;
 }
 
-.required{
-
-}
-
-#registration_from_email{
-  
+.formulaire-inscription{
+  margin: 0 auto;
+  width: 50%;
 }
