@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted('ROLE_ADMIN')] // pour limiter l'acces a l'administrateur
+#[IsGranted('ROLE_EDITOR')] // pour limiter l'acces  au redacteur editor et a l'administrateur par heritage
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]

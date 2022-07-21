@@ -9,7 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')] // pour limiter l'acces a l'administrateur
+#[IsGranted('ROLE_ADMIN')] // pour limiter l'acces a l'administrateur uniquement 
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -20,10 +20,10 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            // IdField::new('id'),
-            TextField::new('email'),
-            ArrayField::new('roles'),
+           yield IdField::new('id'),
+           yield TextField::new('username'),
+           yield TextField::new('email'),
+           yield ArrayField::new('roles'),
         ];
     }
-    
 }

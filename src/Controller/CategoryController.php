@@ -47,7 +47,7 @@ class CategoryController extends AbstractController
         return $this->render('/category/edit.html.twig', ['category' => $category]);
     }
 
-    #[IsGranted('ROLE_USER')] // pour limiter l'acces à l'ustilisateur
+    #[IsGranted('ROLE_USER')] // pour limiter l'acces à l'ustilisateur, l'utilisateur pourra supprimer une category
     #[Route('/category/delete/{id}', name: 'category.delete', methods: ['POST'])]
     public function delete($id) // function delete pour supprimer une categorie
     {
@@ -62,7 +62,7 @@ class CategoryController extends AbstractController
         return $this->redirect('/category');
     }
 
-    #[IsGranted('ROLE_USER')] // pour limiter l'acces à l'ustilisateur
+    #[IsGranted('ROLE_USER')] // pour limiter l'acces à l'ustilisateur, , l'utilisateur pourra creer une category
     #[Route('/category/create', name: 'category.create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response // function create pour ajouter une category
     {
@@ -79,8 +79,6 @@ class CategoryController extends AbstractController
 
         $categorys = $this->repo->findAll();
         return $this->render('/category/index.html.twig', ['categorys' => $categorys] );
-
-
     }
 
     #[Route('/category/{id}', name: 'category.show', methods: ['GET'])]
