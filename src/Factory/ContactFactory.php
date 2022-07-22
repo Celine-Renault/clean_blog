@@ -39,12 +39,13 @@ final class ContactFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'Name' => self::faker()->text(),
-            'Email' => self::faker()->text(),
-            'Telephone' => self::faker()->text(),
+            'Name' => self::faker()->firstName(),
+            'Email' => self::faker()->unique()->safeEmail(),
+            'Telephone' => self::faker()->phoneNumber(),
             'Message' => self::faker()->text(),
         ];
     }
+    
 
     protected function initialize(): self
     {
