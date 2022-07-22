@@ -19,6 +19,9 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add ('username', options:[
+            "attr"=>["class"=>"form-control mb-4"]
+        ])
             ->add('email', EmailType::class, // toujours precier le type d'input avec EmailType::class
             ["attr"=>["class"=>"form-control mb-4"]]) 
 

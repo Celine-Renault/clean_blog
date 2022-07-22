@@ -150,4 +150,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+// je surcharche mon objet User pour le convertir en chaine de caractere pour pouvoir utiliser le username de mes post comme filtre dans easyAdmin
+    public function __toString()
+    {
+        return $this->username;
+    }
 }

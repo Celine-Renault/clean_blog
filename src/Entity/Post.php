@@ -134,5 +134,10 @@ class Post
         return $this;
     }
 
+    // je surcharche mon objet Post pour le convertir en chaine de caractere pour pouvoir utiliser le Titre de mes post comme filtre dans easyAdmin
+    public function __toString()
+    {
+        return $this->Titre;
+    }
    
 }
