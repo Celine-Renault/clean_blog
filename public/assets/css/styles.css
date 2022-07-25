@@ -12145,7 +12145,7 @@ header.masthead .post-heading .meta a {
 
   header.masthead .post-heading .subheading {
     font-size: 1.875rem;
-   
+
   }
 }
 
@@ -12254,41 +12254,42 @@ textarea {
   margin: 0 auto;
 }
 
-.sup-mod-category{
+.sup-mod-category {
   display: flex;
   width: 30%;
-  justify-content:left;
+  justify-content: left;
 }
 
-.btn-cat{
+.btn-cat {
   margin-right: 2rem;
 }
+
 .categorie>p:last-child {
   margin-left: 10px;
 }
 
-.type-category{
+.type-category {
   background-color: lavender;
   padding: 8px;
   border-radius: 5px;
 }
 
-.title-category{
+.title-category {
   margin: 0 auto;
   background-color: darkgray;
   padding: 8px;
   border-radius: 5px;
   width: 60%;
   margin-top: 2rem;
- 
+
 
 }
 
-.post-subtitle{
+.post-subtitle {
   margin-bottom: 15px;
 }
 
-.add-category{
+.add-category {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -12297,29 +12298,51 @@ textarea {
   margin-bottom: 3rem;
 }
 
-.btn-cat-add{
+.btn-cat-add {
   width: 20%;
 }
 
-.ajouter-cat{
+.ajouter-cat {
   width: 50%;
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.formulaire-connexion{
-  width:50%;
-  margin:0 auto;
+.formulaire-connexion {
+  width: 50%;
+  margin: 0 auto;
   margin-bottom: 2rem;
 }
 
-.btn-register{
+.btn-register {
   margin-left: 26rem;
   margin-top: -9rem;
 }
 
-.formulaire-inscription{
+.formulaire-inscription {
   margin: 0 auto;
   width: 50%;
+}
+
+.commentaire {
+  width: 50%;
+  margin: 0 auto;
+  /* border: 0.5px solid black; */
+  border-radius: 10px;
+  padding: 20px;
+  background-color: lavender;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.date-commentaire {
+  margin-right: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.contenu-commentaire{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

@@ -60,10 +60,19 @@
 	</article>
 
 	{# {% if is_granted ('ROLE_USER') %} #}
-		<form class="d-flex flex-column w-50 m-auto" action="" method="POST">
-			<label for="">Ajouter un commentaire</label>
-			<input type="text" id="input-comment">
-			<button class="btn btn-primary w-25" id="btn-comment" type="button">OK</button>
-		</form>
+	<form class="d-flex flex-column w-50 m-auto" action="" method="POST">
+		<label for="">Ajouter un commentaire</label>
+		<textarea type="text" id="input-comment"></textarea>
+		<button class="btn btn-primary w-25" id="btn-comment" type="button">OK</button>
+	</form>
 	{# {% endif %} #}
+
+	{% for comment in post.comments %}
+		<div class="commentaire">
+			<span>{{comment.user}}</span>
+			<p class="contenu-commentaire">{{comment.content}}</p>
+			<span class="date-commentaire">{{comment.CreatedAt|date("m/d/Y")}}</span>
+		</div>
+	{% endfor %}
+
 {% endblock %}

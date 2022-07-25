@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted('ROLE_MODERATOR')] // pour limiter l'acces  au redacteur editor et a l'administrateur par heritage
+#[IsGranted('ROLE_SUPER_USER')] // pour limiter l'acces  au redacteur editor et a l'administrateur par heritage
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
@@ -24,18 +24,22 @@ class DashboardController extends AbstractDashboardController
         // return parent::index();
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
         $url = $routeBuilder->setController(CategoryCrudController::class)->generateUrl();
-
+        
         return $this->redirect($url);
-
+        
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
         // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
+        
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
+
+        // $urlComment = $this->container->get(AdminUrlGenerator::class);
+        // return $this->redirect($urlComment->setController(CommentCrudController::class)->generateUrl());
+
+        // if ('moderateur@test.com' === $this->getUser()->getUserIdentifier()) {
+        //    return $this->redirect($urlComment);
         // }
 
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.

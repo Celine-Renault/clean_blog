@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
@@ -27,7 +28,7 @@ class PostController extends AbstractController
     {
 
         $posts = $this->repo->findAll();
-       
+
         return $this->render('post/index.html.twig', ['posts' => $posts]);
     }
     #[Route('/post/create', name: 'post.create', methods: ['GET', 'POST'])]
@@ -41,7 +42,7 @@ class PostController extends AbstractController
         // dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) { // condition si le formulaire est valider et envoyer
-           $post->setCreatedAt(new DateTime()); // lorsqu'on valide le formulaire il le met à la date du jour, du moment ou on clique 
+            $post->setCreatedAt(new DateTime()); // lorsqu'on valide le formulaire il le met à la date du jour, du moment ou on clique 
             $this->repo->add($post, true); // j'envoie les données vers la BD avec la methode add de PostRepository
             return $this->redirect('/'); // ensuite je redirige vers la vue/page des posts /
         }
@@ -52,12 +53,10 @@ class PostController extends AbstractController
     #[Route('/post/{id}', name: 'post.show', methods: ['GET'])]
     public function show($id): Response
     {
+
         $this->denyAccessUnlessGranted('ROLE_USER');
         $post = $this->repo->find($id); // je recupere 1 element
-        
+
         return $this->render('/post/show.html.twig', ['post' => $post]);
-
     }
-
-   
 }
