@@ -62,17 +62,19 @@
 	{# {% if is_granted ('ROLE_USER') %} #}
 	<form class="d-flex flex-column w-50 m-auto" action="" method="POST">
 		<label for="">Ajouter un commentaire</label>
-		<textarea type="text" id="input-comment"></textarea>
+		<textarea type="text" id="txtarea-comment" data-id="{{post.id}}"></textarea>
 		<button class="btn btn-primary w-25" id="btn-comment" type="button">OK</button>
 	</form>
 	{# {% endif %} #}
 
 	{% for comment in post.comments %}
-		<div class="commentaire">
-			<span>{{comment.user}}</span>
+	<div id="comments"> <!--- div qui contient tous les commentaires -->
+		<div class="comment"> <!--- div qui contient un commentaire -->
+			<span class="user-commentaire">{{comment.user}}</span>
 			<p class="contenu-commentaire">{{comment.content}}</p>
-			<span class="date-commentaire">{{comment.CreatedAt|date("m/d/Y")}}</span>
-		</div>
+			<span class="date-commentaire">Published on {{comment.CreatedAt|date("m/d/Y")}}</span>
+		</div> 
+	</div>
 	{% endfor %}
 
 {% endblock %}
