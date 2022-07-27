@@ -32,31 +32,36 @@ class CommentController extends AbstractController
     $post = $this->pRepo->find($postId); // je recupere le post avec postId
 
     $commentBody = $request->toArray(); // $commentBody est un tableau il recupere le commentaire
-
-    $comment = new Comment;
+// 1. je cree un objet Comment et j'appelle ses propriete pour pouvoir ajouter un commentaire
+    $comment = new Comment; 
     $comment->setCreatedAt(new DateTime());
     $comment->setContent($commentBody['textareaComment']);
     $comment->setUser($this->getUser()); // this appelle une methode getUser qui vient du controller CommentController et de son parent AbstractController
     $comment->setPost($post);
-    dd($comment);
-    $cRepo->add($comment, true); // j'ajoute le commentaire dans la BD
+ 
+    $cRepo->add($comment, true); // j'ajoute le commentaire dans la BD, je stocke 
 
-
+// 2. on recupere tous les commentaires associe au post
     $comments = $post->getComments(); // dans l'entité Post j'ai la methode getComments() qui me permet de recuperer tous les commentaires associé à ce post
 
     // $comments =  $this->CommentRepo->findAll(); // je recupere la liste des commentaire depuis la BD c'est un tableau
-    $allComments = []; // on ajoute chaque commentaire dans ce tableau
 
+   // je cree un tableau vide pour que JAVASCRIPT puisse recuperer les commentaires sinon il ne peut pas le faire avec $comments de la boucle foreach
+    $allComments = []; // on ajoute chaque commentaire dans ce tableau 
+
+    // boucle foreach pour renvoyer les donnes vers JAVASCRIPT
     foreach ($comments as $comment) { // TABLEAU AS les ELEMENTS DES TABLEAU, IL PEUT AUSSI Y AVOIR LES CLES ET LES VALEURS A DROITE du tableau apres le AS
 
       // je parcours le tableau pour recuperer tous les commentaires
       $allComments[] = [
 
         'id' => $comment->getId(),
+        'user'=> $comment->getUser()->getUsername(),
         'content' => $comment->getContent(),
-        'createdAt' => $comment->getCreatedAt(),
+        'createdAt' => $comment->getCreatedAt()->format("d/m/Y H:i"),
       ];
     }
+// il renvoie du json pour que le JAVASCRIPT fonctionne
     return $this->json($allComments);
   }
 }

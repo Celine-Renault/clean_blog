@@ -67,14 +67,17 @@
 	</form>
 	{# {% endif %} #}
 
-	{% for comment in post.comments %}
+
+<!--avec la vue show on carge les commentaires présent dans la BASE de DONNEE quand on arrive sur le details d'un post 
+et avec JS et JSON on charge le nouveau commentaire ajouter sans recharger toute la page-->
 	<div id="comments"> <!--- div qui contient tous les commentaires -->
+	{% for comment in post.comments %}
 		<div class="comment"> <!--- div qui contient un commentaire -->
 			<span class="user-commentaire">{{comment.user}}</span>
 			<p class="contenu-commentaire">{{comment.content}}</p>
-			<span class="date-commentaire">Published on {{comment.CreatedAt|date("m/d/Y")}}</span>
+			<span class="date-commentaire">Published on {{comment.CreatedAt|date("m/d/Y H:i")}}</span>
 		</div> 
-	</div>
 	{% endfor %}
+	</div>
 
 {% endblock %}
