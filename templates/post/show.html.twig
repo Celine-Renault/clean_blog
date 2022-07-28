@@ -54,13 +54,20 @@
 						&middot; Images by
 						<a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
 					</p>
+						
+							<button class="like" id="add-like" data-id="{{post.id}}">
+								<span></span>
+								{# <i class="fa-solid fa-thumbs-up"></i> #}
+								<span>&#128077; Like</span>
+							</button>
 				</div>
 			</div>
 		</div>
 	</article>
 
+
 	{# {% if is_granted ('ROLE_USER') %} #}
-	<form class="d-flex flex-column w-50 m-auto" action="" method="POST">
+	<form class="add-comment" action="" method="POST">
 		<label for="">Ajouter un commentaire</label>
 		<textarea type="text" id="txtarea-comment" data-id="{{post.id}}"></textarea>
 		<button class="btn btn-primary w-25" id="btn-comment" type="button">OK</button>
@@ -68,16 +75,72 @@
 	{# {% endif %} #}
 
 
-<!--avec la vue show on carge les commentaires présent dans la BASE de DONNEE quand on arrive sur le details d'un post 
-et avec JS et JSON on charge le nouveau commentaire ajouter sans recharger toute la page-->
-	<div id="comments"> <!--- div qui contient tous les commentaires -->
-	{% for comment in post.comments %}
-		<div class="comment"> <!--- div qui contient un commentaire -->
-			<span class="user-commentaire">{{comment.user}}</span>
-			<p class="contenu-commentaire">{{comment.content}}</p>
-			<span class="date-commentaire">Published on {{comment.CreatedAt|date("m/d/Y H:i")}}</span>
-		</div> 
-	{% endfor %}
+	<!--avec la vue show on carge les commentaires présent dans la BASE de DONNEE quand on arrive sur le details d'un post 
+							et avec JS et JSON on charge le nouveau commentaire ajouter sans recharger toute la page-->
+	<div
+		id="comments">
+		<!--- div qui contient tous les commentaires -->
+		{% for comment in post.comments %}
+			<div
+				class="comment">
+				<!--- div qui contient un commentaire -->
+				<span class="user-commentaire">{{comment.user}}</span>
+				<p class="contenu-commentaire">{{comment.content}}</p>
+				<span class="date-commentaire">Published on
+					{{comment.CreatedAt|date("m/d/Y H:i")}}</span>
+			</div>
+		{% endfor %}
 	</div>
 
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+	
+let btnComment = document.getElementById('btn-comment');
+
+let containerComment = document.getElementById('txtarea-comment'); // je recupere mon element textearea
+let postId = containerComment.getAttribute('data-id'); // je recupere l'attribut data-id du textearea et du span
+
+
+btnComment.addEventListener('click', Valider)
+
+function Valider() {
+    
+    fetch('/comment/create/'+ postId, {
+        method: 'POST',
+        headers: {'content-type': 'Application/json'},
+        body: JSON.stringify({ 'textareaComment': containerComment.value })
+    }) // + postId je recupere l'attribut data-id de textarea
+    .then(function (response) {
+        return response.json();
+    }).then(function (data) { // data c'est $allComments
+        
+        let comments = document.getElementById('comments');
+
+            comments.innerHTML = ''; //  je vide, je supprime le contenu de la div
+           
+            for (comment of data) {
+                comments.innerHTML += '<div class="comment"><span class="user-commentaire">'+comment.user+'</span><p class="contenu-commentaire">'+comment.content+'</p><span class="date-commentaire">Published on '+comment.createdAt+'</span></div>'
+            }
+
+        })
+}
+
+///// ajouter un j'aime sur le post avec un click 
+		let likePlus = document.querySelector('#add-like');
+
+		likePlus.addEventListener('click', AddLike)
+
+		function AddLike() {
+		// console.log(likePlus);
+		fetch('/like/create/'+ postId)
+		.then(function(response){
+			return response.json();
+		}).then(function(nblikes){
+			console.log(nblikes);
+		})
+		}
+	</script>
 {% endblock %}

@@ -5,33 +5,4 @@
 */
 
 
-let btnComment = document.getElementById('btn-comment');
 
-let containerComment = document.getElementById('txtarea-comment'); // je recupere mon element textearea
-let postId = containerComment.getAttribute('data-id'); // je recupere l'attribut data-id du textearea
-
-
-btnComment.addEventListener('click', Valider)
-
-function Valider() {
-    
-    fetch('/comment/create/' + postId, {
-        method: 'POST',
-        headers: {'content-type': 'Application/json'},
-        body: JSON.stringify({ 'textareaComment': containerComment.value })
-    }) // + postId je recupere l'attribut data-id de textarea
-    .then(function (response) {
-        return response.json();
-    }).then(function (data) { // data c'est $allComments
-        
-        let comments = document.getElementById('comments');
-
-            comments.innerHTML = ''; //  je vide, je supprime le contenu de la div
-           
-            for (comment of data) {
-                comments.innerHTML += '<div class="comment"><span class="user-commentaire">'+comment.user+'</span><p class="contenu-commentaire">'+comment.content+'</p><span class="date-commentaire">Published on '+comment.createdAt+'</span></div>'
-            }
-
-        })
-
-}
