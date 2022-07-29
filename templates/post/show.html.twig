@@ -56,9 +56,12 @@
 					</p>
 						
 							<button class="like" id="add-like" data-id="{{post.id}}">
-								<span></span>
 								{# <i class="fa-solid fa-thumbs-up"></i> #}
-								<span>&#128077; Like</span>
+								<span>&#128077;</span>
+								
+								<span class="nb-like">{% if post.likes|length > 0 %}{{post.likes|length}}{% endif %}</span>
+							
+								<span>Like</span>
 							</button>
 				</div>
 			</div>
@@ -130,6 +133,7 @@ function Valider() {
 
 ///// ajouter un j'aime sur le post avec un click 
 		let likePlus = document.querySelector('#add-like');
+		let numberLike = document.querySelector('.nb-like');
 
 		likePlus.addEventListener('click', AddLike)
 
@@ -138,8 +142,15 @@ function Valider() {
 		fetch('/like/create/'+ postId)
 		.then(function(response){
 			return response.json();
-		}).then(function(nblikes){
-			console.log(nblikes);
+		}).then(function(data){	
+			console.log(data);
+			numberLike.innerHTML = data.nbLikes;
+			if(data.nbLikes < 1){
+				numberLike.style.display = "none"	
+			}else{
+				numberLike.style.display = "inline-block";
+			}
+
 		})
 		}
 	</script>

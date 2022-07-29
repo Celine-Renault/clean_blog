@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
-use App\Entity\Like;
 use App\Entity\Post;
 use App\Form\PostType;
-use App\Repository\LikeRepository;
 use App\Repository\PostRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -55,11 +53,11 @@ class PostController extends AbstractController
     #[Route('/post/{id}', name: 'post.show', methods: ['GET'])]
     public function show($id): Response
     {
-
         $this->denyAccessUnlessGranted('ROLE_USER');
         $post = $this->repo->find($id); // je recupere 1 element
 
+        // $likes = count($post->getLikes()); // je recupere tous les likes associés au post
+    
         return $this->render('/post/show.html.twig', ['post' => $post]);
     }
-
 }

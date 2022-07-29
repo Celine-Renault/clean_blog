@@ -32,21 +32,22 @@ class LikeController extends AbstractController
 
         $like = $this->lRepo->findOneBy(['post'=>$post,'user'=>$this->getUser()]); // $this->getUser() pour savoir si l'utilisateur est connecté 
 
-        if($like==null){
+        if($like==null){ // ou if($like) c'est pareil par defaut $like est null
             // ajouter un like
-         $like = new Like;
+         $like = new Like();
          $like->setUser($this->getUser());
          $like->setPost($post); 
 
          $this->lRepo->add($like, true);
-
+        
         }else{
-        // supprimer like
+        // supprimer un like
         $this->lRepo->remove($like, true);
         }
+
         $nbLikes = count($post->getLikes());
 
-        return $this->json(['nblikes'=>$nbLikes]);
+        return $this->json(['nbLikes'=>$nbLikes]); // data dans json correspon au nbLikes et la methode json() retourne un objet
     }
 }
 
