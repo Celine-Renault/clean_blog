@@ -7,7 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -32,6 +34,7 @@ class PostCrudController extends AbstractCrudController
         return $filters
             ->add('Titre')
             ->add('category');
+           
     }
 
     public function configureFields(string $pageName): iterable
@@ -43,9 +46,12 @@ class PostCrudController extends AbstractCrudController
         //     ];
         return [
             yield AssociationField::new('category'),
-            yield IdField::new('id'),
+            // yield IdField::new('id'),
             yield TextField::new('titre'),
-            yield TextEditorField::new('description')
+            yield DateField::new('createdAt'),
+            yield TextEditorField::new('description'),
+            yield TextEditorField::new('contenu'),
+            yield ImageField::new('imageFileName')->setBasePath('uploads/images/')->setUploadDir('public/uploads/images')
         ];
     }
 }

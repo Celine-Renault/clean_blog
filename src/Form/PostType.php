@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,6 +24,7 @@ class PostType extends AbstractType
             ])
             ->add('Description')
             ->add('Contenu')
+            ->add('imageFileName')
             ->add('Envoyer', SubmitType::class)
         ;
     }

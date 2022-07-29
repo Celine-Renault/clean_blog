@@ -37,6 +37,9 @@ class Post
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Like::class)]
     private $likes;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $imageFileName;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -173,5 +176,19 @@ class Post
 
         return $this;
     }
+
+    public function getImageFileName(): ?string
+    {
+        return $this->imageFileName;
+    }
+
+    public function setImageFileName(?string $imageFileName): self
+    {
+        $this->imageFileName = $imageFileName;
+
+        return $this;
+    }
+
+   
    
 }

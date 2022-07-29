@@ -45,7 +45,7 @@ class LikeController extends AbstractController
         $this->lRepo->remove($like, true);
         }
 
-        $nbLikes = count($post->getLikes());
+        $nbLikes = count($post->getLikes()); // je compte et je recupere toutes les likes du post
 
         return $this->json(['nbLikes'=>$nbLikes]); // data dans json correspon au nbLikes et la methode json() retourne un objet
     }

@@ -12316,8 +12316,9 @@ textarea {
 }
 
 .btn-register {
-  margin-left: 26rem;
-  margin-top: -9rem;
+  margin: 0 auto;
+  width: 50%;
+  margin-bottom: 2rem;
 }
 
 .formulaire-inscription {

@@ -31,24 +31,25 @@ class PostController extends AbstractController
 
         return $this->render('post/index.html.twig', ['posts' => $posts]);
     }
-    #[Route('/post/create', name: 'post.create', methods: ['GET', 'POST'])]
-    public function create(Request $request): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        $post = new Post(); // creation de l'objet Post qui est vide pour le moment
 
-        $form = $this->createForm(PostType::class, $post); //creation du formulaire qu'on place dans $form, il va s'afficher sur la page /post/create
-        $form->handleRequest($request); // avec $request, je recupere les donnes de la requete quand j'ai envoyer le formulaire en appuyant sur le bouton valider/ok
-        // dd($request);
+    // #[Route('/post/create', name: 'post.create', methods: ['GET', 'POST'])]
+    // public function create(Request $request): Response
+    // {
+    //     $this->denyAccessUnlessGranted('ROLE_USER');
+    //     $post = new Post(); // creation de l'objet Post qui est vide pour le moment
 
-        if ($form->isSubmitted() && $form->isValid()) { // condition si le formulaire est valider et envoyer
-            $post->setCreatedAt(new DateTime()); // lorsqu'on valide le formulaire il le met à la date du jour, du moment ou on clique 
-            $this->repo->add($post, true); // j'envoie les données vers la BD avec la methode add de PostRepository
-            return $this->redirect('/'); // ensuite je redirige vers la vue/page des posts /
-        }
+    //     $form = $this->createForm(PostType::class, $post); //creation du formulaire qu'on place dans $form, il va s'afficher sur la page /post/create
+    //     $form->handleRequest($request); // avec $request, je recupere les donnes de la requete quand j'ai envoyer le formulaire en appuyant sur le bouton valider/ok
+    //     // dd($request);
 
-        return $this->renderForm('post/create.html.twig', ['form' => $form]); // utiliser renderForm et non render // tableau associatif pour pouvoir recuperer les donnes rentrees dans le formulaire
-    }
+    //     if ($form->isSubmitted() && $form->isValid()) { // condition si le formulaire est valider et envoyer
+    //         $post->setCreatedAt(new DateTime()); // lorsqu'on valide le formulaire il le met à la date du jour, du moment ou on clique 
+    //         $this->repo->add($post, true); // j'envoie les données vers la BD avec la methode add de PostRepository
+    //         return $this->redirect('/'); // ensuite je redirige vers la vue/page des posts /
+    //     }
+
+    //     return $this->renderForm('post/create.html.twig', ['form' => $form]); // utiliser renderForm et non render // tableau associatif pour pouvoir recuperer les donnes rentrees dans le formulaire
+    // }
 
     #[Route('/post/{id}', name: 'post.show', methods: ['GET'])]
     public function show($id): Response

@@ -12,8 +12,8 @@
 				<div class="col-md-10 col-lg-8 col-xl-7">
 					<div class="site-heading">
 						<div class="post-heading">
-							<h1 class="post-title">{{post.Titre}}</h1>
-							<h2 class="post-subtitle">{{post.Description}}</h2>
+							<h1 class="post-title">{{post.Titre|raw}}</h1>
+							<h2 class="post-subtitle">{{post.Description|raw}}</h2>
 							<p class="meta">
 								Posted by
 								<a href="#!">Start Bootstrap</a>
@@ -36,18 +36,19 @@
 		<div class="container px-4 px-lg-5">
 			<div class="row gx-4 gx-lg-5 justify-content-center">
 				<div class="col-md-10 col-lg-8 col-xl-7">
-					<p>{{post.Contenu}}</p>
+					<p>{{post.Contenu|raw}}</p>
 
 					<h2 class="section-heading">Lorem ipsum dolor int</h2>
 
-					<blockquote class="blockquote">{{post.Contenu}}</blockquote>
+					<blockquote class="blockquote">{{post.Contenu|raw}}</blockquote>
 
 					<h2 class="section-heading">Lorem ipsum dolor int</h2>
 					<p></p>
-					<a href=""><img class="img-fluid" src="{{asset('assets/img/post-sample-image.jpg')}}" alt="..."/></a>
+					{# <a href=""><img class="img-fluid" src="{{asset('assets/img/post-sample-image.jpg')}}" alt="..."/></a> #}
+					<a href=""><img class="img-fluid" src="{{asset('uploads/images/'~post.imageFileName)}}" alt="..."/></a>
 					<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
-					<p>{{post.Contenu}}</p>
-					<p>{{post.Contenu}}</p>
+					<p>{{post.Contenu|raw}}</p>
+					<p>{{post.Contenu|raw}}</p>
 					<p>
 						Placeholder text by
 						<a href="http://spaceipsum.com/">Space Ipsum</a>
