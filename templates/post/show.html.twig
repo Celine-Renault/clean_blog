@@ -7,6 +7,7 @@
 {% block header %}
 
 	<header class="masthead" style="background-image: url('{{asset('assets/img/post-bg.jpg')}}')">
+		{# <header class="masthead" style="background-image: url('{{asset('uploads/images/'~post.imageFileName)}}')">  #}
 		<div class="container position-relative px-4 px-lg-5">
 			<div class="row gx-4 gx-lg-5 justify-content-center">
 				<div class="col-md-10 col-lg-8 col-xl-7">
@@ -40,12 +41,12 @@
 
 					<h2 class="section-heading">Lorem ipsum dolor int</h2>
 
-					<blockquote class="blockquote">{{post.Contenu|raw}}</blockquote>
+					<blockquote class="blockquote">{{post.Contenu|raw}}</blockquote> <!-- |raw pour enlever le <div> qui apparait dans le texte a cause du TextEditorField dans postcrudcontroller-->
 
 					<h2 class="section-heading">Lorem ipsum dolor int</h2>
 					<p></p>
-					{# <a href=""><img class="img-fluid" src="{{asset('assets/img/post-sample-image.jpg')}}" alt="..."/></a> #}
-					<a href=""><img class="img-fluid" src="{{asset('uploads/images/'~post.imageFileName)}}" alt="..."/></a>
+					 {# <a href=""><img class="img-fluid" src="{{asset('assets/img/post-sample-image.jpg')}}" alt="..."/></a>  <!--avant les images étaient dans un dossier image--> #}
+					<a href=""><img class="img-fluid" src="{{asset('uploads/images/'~post.imageFileName)}}" alt="..."/></a> <!--pour upploader des images-->
 					<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
 					<p>{{post.Contenu|raw}}</p>
 					<p>{{post.Contenu|raw}}</p>
